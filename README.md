@@ -1,12 +1,23 @@
-# React + Vite
+-------Setup instructions------
+git clone https://github.com/Jaswant10041/HrDashboard.git
+Open command prompt with that path
+write command to open vscode. command- code .
+npm install
+npm start
+And Here is your project running on localhost successfully.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+........................................................................................................................................................................................................................................
 
-Currently, two official plugins are available:
+---------Features Implemented(Every thing i wrote is a pure React)---------
+1- I created routing in first step
+2- I fetched Data from given api(https://dummyjson.com/users?limit=20).I used fetch api inside async function to fetch data.
+3- For better user experience I used beauty of useEffect to create a Shimmer effect. While data is being fetched from api it will show empty cards as we see in youtube,swiggy,bookmyshow etc. 
+4- After Data is being fetched i stored data in CONTEXT API to use data efficiently in all components.
+5- I displayed users data in Cards.
+6- I created Search box to search based on name,email,department
+7- I created Drop down box for filtering specific department.
+8- I created EmployOverview to show complete details of employ.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+........................................................................................................................................................................................................................................
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+All features images are inside src/utils/features
