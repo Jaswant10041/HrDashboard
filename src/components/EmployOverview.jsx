@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { GlobalContext } from '../GlobalState';
 
@@ -62,23 +62,7 @@ const EmployOverview = () => {
         <p className="p-2">Email : {employee.email}</p>
 
         <p className='p-2'>Department : {employee.company.department}</p>
-        <div className="rating p-2">
-          <span data-twe-rating-icon-ref="1" className="text-yellow-400">
-            ★
-          </span>
-          <span data-twe-rating-icon-ref="2" className="text-yellow-400">
-            ★
-          </span>
-          <span data-twe-rating-icon-ref="3" className="text-yellow-400">
-            ★
-          </span>
-          <span data-twe-rating-icon-ref="4" className="text-yellow-400">
-            ★
-          </span>
-          <span data-twe-rating-icon-ref="5" className="text-yellow-400">
-            ★
-          </span>
-        </div>
+        <div className="text-xl">{renderStars(performance)}</div>
       </div>
 
       {/* Tabs */}
@@ -98,7 +82,7 @@ const EmployOverview = () => {
         ))}
       </div>
 
-      {/* Tab Content */}
+      
       <div>
         {activeTab === 'overview' && (
           <div>

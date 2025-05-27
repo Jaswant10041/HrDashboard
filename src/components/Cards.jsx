@@ -2,11 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../GlobalState";
 import Card from "./Card";
 import ShimmerUi from "./ShimmerUi";
+import { Link } from "react-router-dom";
 
-const Cards = () => {
+const Cards = ({ bookmarkedIds = [], onBookmark }) => {
   const { usersData } = useContext(GlobalContext);
   const [dummyUsersData, setDummyUsersData] = useState(usersData);
-  const [searchString, setSearchString] = useState('');
+  const [searchString, setSearchString] = useState("");
   const [selectedDepartments, setSelectedDepartments] = useState([]);
 
   useEffect(() => {
@@ -14,27 +15,26 @@ const Cards = () => {
   }, [usersData, selectedDepartments]);
 
   const handleSearchOperation = () => {
-    
     filterData();
   };
 
   const handleDepartmentChange = (dept) => {
     setSelectedDepartments((prev) =>
-      prev.includes(dept) ? prev.filter(d => d !== dept) : [...prev, dept]
+      prev.includes(dept) ? prev.filter((d) => d !== dept) : [...prev, dept]
     );
   };
 
   const filterData = () => {
     let filtered = usersData;
     if (selectedDepartments.length > 0) {
-      filtered = filtered.filter(user => selectedDepartments.includes(user?.company?.department));
+      filtered = filtered.filter((user) =>
+        selectedDepartments.includes(user?.company?.department)
+      );
     }
-    console.log(selectedDepartments);
-    console.log(usersData)
 
-    if (searchString.trim() !== '') {
-      filtered = filtered.filter(user =>
-        Object.values(user).some(value =>
+    if (searchString.trim() !== "") {
+      filtered = filtered.filter((user) =>
+        Object.values(user).some((value) =>
           value.toString().toLowerCase().includes(searchString.toLowerCase())
         )
       );
@@ -45,14 +45,22 @@ const Cards = () => {
 
   // Full list of departments
   const departments = [
-    "Engineering", "Support", "Research and Development", "Human Resources",
-    "Product Management", "Marketing", "Services", "Accounting", "Sales",
-    "Training", "Legal"
+    "Engineering",
+    "Support",
+    "Research and Development",
+    "Human Resources",
+    "Product Management",
+    "Marketing",
+    "Services",
+    "Accounting",
+    "Sales",
+    "Training",
+    "Legal",
   ];
 
   return (
     <div className="flex flex-col mt-5">
-      <div className="flex justify-center">
+      <div className="flex justify-center gap-4">
         <input
           type="text"
           name="searchString"
@@ -67,6 +75,12 @@ const Cards = () => {
         >
           Search
         </button>
+        <Link
+          to="/bookmarks"
+          className="w-40 h-9 flex items-center justify-center border border-blue-600 bg-blue-100 rounded-sm text-xl font-normal"
+        >
+          Show Bookmarks
+        </Link>
       </div>
 
       <div className="flex flex-wrap justify-center mt-4 gap-4">
@@ -83,14 +97,17 @@ const Cards = () => {
       </div>
 
       <div className="flex flex-wrap justify-around gap-2.5 mt-4">
-        {dummyUsersData.map((item) => (
-          <Card key={item.id} userData={item} />
-        ))}
-      </div>
-      
-      <div className="flex flex-wrap justify-around gap-2.5 mt-4">
-        {usersData.length===0 && (
-          <ShimmerUi/>
+        {usersData.length === 0 ? (
+          <ShimmerUi />
+        ) : (
+          dummyUsersData.map((item) => (
+            <Card
+              key={item.id}
+              userData={item}
+              isBookmarked={bookmarkedIds.includes(item.id)}
+              onBookmark={onBookmark}
+            />
+          ))
         )}
       </div>
     </div>
