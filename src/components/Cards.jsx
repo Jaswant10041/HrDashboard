@@ -69,7 +69,7 @@ const Cards = ({ bookmarkedIds = [], onBookmark }) => {
           placeholder="Search Users"
         />
         <button
-          className="w-20 h-9 cursor-pointer border border-black rounded-sm text-xl font-normal"
+          className="w-20 h-9 cursor-pointer border border-black rounded-sm text-xl font-normal bg-zinc-100 hover:bg-zinc-300"
           type="submit"
           onClick={handleSearchOperation}
         >
@@ -77,7 +77,7 @@ const Cards = ({ bookmarkedIds = [], onBookmark }) => {
         </button>
         <Link
           to="/bookmarks"
-          className="w-40 h-9 flex items-center justify-center border border-blue-600 bg-blue-100 rounded-sm text-xl font-normal"
+          className="w-40 h-9 flex items-center justify-center border  bg-zinc-100 hover:bg-zinc-300 rounded-sm text-xl font-normal"
         >
           Show Bookmarks
         </Link>

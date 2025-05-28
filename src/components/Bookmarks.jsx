@@ -16,7 +16,7 @@ const Bookmarks = ({ bookmarkedIds = [], onBookmark }) => {
         {usersData.length === 0 ? (
           <ShimmerUi />
         ) : bookmarkedUsers.length === 0 ? (
-          <p className="text-lg mt-8">No bookmarks yet.</p>
+          <p className="mt-8 font-medium text-4xl">No bookmarks yet.</p>
         ) : (
           bookmarkedUsers.map(user => (
             <Card

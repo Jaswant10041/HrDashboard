@@ -11,9 +11,10 @@ const EmployOverview = () => {
   const [performance, setPerformance] = useState(0);
 
   useEffect(() => {
-    const selected = newData.find((item) => item.id === parseInt(id));
-    setEmployee(selected || null);
-    setPerformance(Math.floor(Math.random() * 5) + 1); // Random rating from 1 to 5
+    const selected = newData.filter((item) => item.id == id);
+    console.log(selected);
+    setEmployee(selected.length>0 ? selected[0] : null);
+    setPerformance(Math.floor(Math.random() * 5) + 1);
   }, [id, newData]);
 
   const getPerformanceLabel = (rating) => {
@@ -23,9 +24,9 @@ const EmployOverview = () => {
   };
 
   const renderStars = (rating) => {
-    return Array(5)
-      .fill(null)
-      .map((_, index) => (
+    const arr=[1,2,3,4,5];
+    return arr
+      .map((item, index) => (
         <span key={index} className={index < rating ? 'text-yellow-500' : 'text-gray-300'}>
           ★
         </span>
@@ -61,7 +62,7 @@ const EmployOverview = () => {
 
         <p className="p-2">Email : {employee.email}</p>
 
-        <p className='p-2'>Department : {employee.company.department}</p>
+        <p className='p-2'>Department : {employee?.company?.department}</p>
         <div className="text-xl">{renderStars(performance)}</div>
       </div>
 
